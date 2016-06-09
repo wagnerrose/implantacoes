@@ -61,11 +61,11 @@ else
 end
 conta = 0
 contaCircuito = 0 
-primeira_linha = "id_circuito;designacao;cliente;descricao;uf_circuito;tipo_serviço;banda_contratada;banda_ativada;"
+primeira_linha = "designacao;cliente;descricao;uf_circuito;tipo_servico;banda_contratada;banda_ativada;"
 primeira_linha << "os_ativacao;data_os;tipo_os;data_ativacao;estacaoA;acessoA;enderecoA;cidadeA;ufA;cepA;estacaoB;"
-primeira_linha << "acessoB;enderecoB;cidadeB;ufB;cepB;contato;telefone;movel;e-mail;valor;previsao;status;ultimo_evento"
+primeira_linha << "acessoB;enderecoB;cidadeB;ufB;cepB;contato;telefone;movel;email;valor;previsao;status;ultimo_evento"
 # le arquivo csv de entrada
-CSV.foreach("#{csv_file}", encoding:'iso-8859-1:utf-8', col_sep: ';', row_sep: :auto) do |linha|
+CSV.foreach("#{csv_file}", encoding:'utf-8', col_sep: ';', row_sep: :auto) do |linha|
   linhaCircuito = ""
   dadosCerto = true
   case 
@@ -162,16 +162,17 @@ CSV.foreach("#{csv_file}", encoding:'iso-8859-1:utf-8', col_sep: ';', row_sep: :
     linhaCircuito << "#{dataAtivacao}" << ";" #Data ativacao
 
     linhaCircuito << "#{linha[28]};" # status	
-    linhaCircuito << "#{linha[29]};" # ultimoEvento	  
+    linhaCircuito << "#{linha[29]}" # ultimoEvento	  
 
     # ponto de checagem da linhaCircuito
     puts linhaCircuito
 
     if dadosCerto # grava linha com informação de circuito se os dados estao corretos
       contaCircuito += 1
-      saidaCircuitos.puts "#{contaCircuito};#{linhaCircuito}"
+#      saidaCircuitos.puts "#{contaCircuito};#{linhaCircuito.gsub(/\"|\'/,"")}" #grava apos retirar "" ou ''
+      saidaCircuitos.puts "#{linhaCircuito.gsub(/\"|\'/,"")}" #grava apos retirar "" ou ''
     end
-    puts "\nSaida = #{contaCircuito};#{linhaCircuito}\n"
+    puts "\nSaida = #{contaCircuito};#{linhaCircuito.gsub(/\"|\'/,"")}\n"
     designacao = linha[1]
     observacao = linha[30]
     unless(observacao.nil?) #verifica se existe observaçao a ser carregada
