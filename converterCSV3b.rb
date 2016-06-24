@@ -1,5 +1,5 @@
 # A
-# DATA: 24/06/2016
+# DATA: 23/05/2016
 # PROGRAMADOR: Wagner Röse
 # OBJETIVO: Criar um script para importar os dados de arquivo csv
 #		contendo informação da situação das implantações de cliente da
@@ -77,7 +77,7 @@ CSV.foreach("#{csv_file}", encoding:'utf-8', col_sep: ';', row_sep: :auto) do |l
     end
     linhaCircuito << "#{linha[0]};" # cliente
     linhaCircuito << "#{linha[3]};" # descricao
-    linhaCircuito << "#{linha[1]};" # regional 
+    linhaCircuito << "#{linha[2]};" # regional 
     
     linhaCircuito << "#{linha[4]};" # tipo servico
     linhaCircuito << "#{linha[5]};" # banda_Contratada
