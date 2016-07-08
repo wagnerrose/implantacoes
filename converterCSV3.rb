@@ -52,7 +52,7 @@ puts "Arquivo de saida de Eventos aberto para inclusão"
 saidaEventos = File.new("#{csv_Evento}","w")
 conta = 0
 contaCircuito = 0 
-primeira_linha = "designacao;cliente;regional;descricao;tipo_servico;banda_contratada;banda_ativada;"
+primeira_linha = "designacao;cliente;descricao;regional;tipo_servico;banda_contratada;banda_ativada;"
 primeira_linha << "os_ativacao;data_os;tipo_os;data_ativacao;contrato;aditivo;estacaoA;ufA;estacaoB;"
 primeira_linha << "ufB;valor;previsao;status;ultimo_evento"
 
