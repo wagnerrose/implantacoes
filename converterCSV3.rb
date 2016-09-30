@@ -10,6 +10,10 @@ require 'csv'
 require 'date'
 require 'time'
 
+require 'pry'
+require 'pry-doc'
+require 'pry-nav'
+
 # valida data segundo formato mm/dd/yyyy
 def valid_date?( str, format="%Y/%m/%d" )
   Date.strptime(str,format) rescue false
@@ -29,6 +33,8 @@ def formata_cep (str)
     ft_cep = "" 
   end
 end
+#binding.pry
+
 # Le e verifica parâmetros passados
 if ARGV.length < 1
   abort("\n====== >>> É necessario informar o nome do arquivo a ser convertido.\n")
@@ -55,6 +61,8 @@ contaCircuito = 0
 primeira_linha = "designacao;cliente;descricao;regional;tipo_servico;banda_contratada;banda_ativada;"
 primeira_linha << "os_ativacao;data_os;tipo_os;data_ativacao;contrato;aditivo;estacaoA;ufA;estacaoB;"
 primeira_linha << "ufB;valor;previsao;status;ultimo_evento"
+
+#binding.pry
 
 # le arquivo csv de entrada
 CSV.foreach("#{csv_file}", encoding:'utf-8', col_sep: ';', row_sep: :auto) do |linha|
@@ -134,9 +142,8 @@ CSV.foreach("#{csv_file}", encoding:'utf-8', col_sep: ';', row_sep: :auto) do |l
 
     linhaCircuito << "#{linha[17]};" # status	
     linhaCircuito << "#{linha[18]}" # ultimoEvento	  
-
-    # ponto de checagem da linhaCircuito
-    #    puts linhaCircuito
+    
+#    binding.pry
 
     if dadosCerto # grava linha com informação de circuito se os dados estao corretos
       contaCircuito += 1
